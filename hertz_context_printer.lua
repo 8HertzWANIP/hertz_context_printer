@@ -35,7 +35,7 @@ core:add_listener(
 
 
 core:add_listener(
-"_DEBUGCharacterSelected",
+"_DEBUG2CharacterSelected",
 "CharacterSelected",
 true,
 function(context)
