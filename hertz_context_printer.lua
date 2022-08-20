@@ -23,16 +23,6 @@ local function army_context_logger(mil_force)
 	end;
 end;
 
-core:add_listener(
-	mod_name.."_CheckPanel",
-	"PanelOpenedCampaign",
-	true,
-	function(context)
-		out(context.string);
-	end,
-	true
-);
-
 
 core:add_listener(
 "_DEBUG2CharacterSelected",
