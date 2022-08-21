@@ -23,14 +23,16 @@ local function army_context_logger(mil_force)
 	end;
 end;
 
+local function debug_printer()
 
-core:add_listener(
-	"_DEBUG2CharacterSelected",
+	core:add_listener(
+	"_DEBUGCharacterSelected",
 	"CharacterSelected",
 	true,
 	function(context)
 
 		if not context:character():is_null_interface() then
+			cm:replenish_action_points(cm:char_lookup_str(context:character():command_queue_index()))
 			out("-----===== CHARACTER ["..context:character():command_queue_index().."] INFO =====-----")
 			out("is_null_interface is 	--------["..tostring(context:character():is_null_interface()).."]")
 			out("has_garrison_residence is 	----["..tostring(context:character():has_garrison_residence()).."]")
@@ -46,6 +48,7 @@ core:add_listener(
 			out("character_subtype_key is 	----["..tostring(context:character():character_subtype_key()).."]")
 			out("battles_fought is 	------------["..tostring(context:character():battles_fought()).."]")
 			out("turns_at_sea is 	------------["..tostring(context:character():turns_at_sea()).."]")
+			out("rank is 	--------------------["..tostring(context:character():rank()).."]")
 			out("logical_position_x is 	--------["..tostring(context:character():logical_position_x()).."]")
 			out("logical_position_y is 	--------["..tostring(context:character():logical_position_y()).."]")
 			out("is_at_sea is 	----------------["..tostring(context:character():is_at_sea()).."]")
@@ -56,8 +59,8 @@ core:add_listener(
 		end;
 	end,
 	true
-);
-core:add_listener(
+	);
+	core:add_listener(
 	"_DEBUG2SettlementSelected",
 	"SettlementSelected",
 	true,
@@ -130,4 +133,7 @@ core:add_listener(
 		out("Region has_active_storm					 ["..tostring(target_region:has_active_storm()).."]")
 	end,
 	true
-);
+	);
+end;
+
+cm:add_first_tick_callback(function() debug_printer() end);
