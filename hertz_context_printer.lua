@@ -26,13 +26,12 @@ end;
 local function debug_printer()
 
 	core:add_listener(
-	"_DEBUGCharacterSelected",
+	"_DEBUG2CharacterSelected",
 	"CharacterSelected",
 	true,
 	function(context)
 
 		if not context:character():is_null_interface() then
-			cm:replenish_action_points(cm:char_lookup_str(context:character():command_queue_index()))
 			out("-----===== CHARACTER ["..context:character():command_queue_index().."] INFO =====-----")
 			out("is_null_interface is 	--------["..tostring(context:character():is_null_interface()).."]")
 			out("has_garrison_residence is 	----["..tostring(context:character():has_garrison_residence()).."]")
